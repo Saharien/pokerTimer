@@ -10,9 +10,9 @@ export default class ButtonBarView extends React.Component {
   render() {
     return (
       <View style={styles.buttonBar}>
-        <EvilIcon name='play' size={85} color="#77CC7B" />
-        <EvilIcon name='gear' size={83} color="#77CC7B" />
-        <MiKaIcon name='pause' size={83} color="#77CC7B" />
+        <EvilIcon name='play' size={85} style={styles.button} />
+        <EvilIcon name='gear' size={83} style={styles.button} />
+        { /* <MiKaIcon name='pause' size={83} color="#77CC7B" /> */ }
       </View>
     );
   }
@@ -25,5 +25,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#0E8A17',
     alignItems: 'center',
   },
+
+  button: {
+    color: '#77CC7B',
+    marginBottom: 8,
+  }
 
 });

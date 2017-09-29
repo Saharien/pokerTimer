@@ -4,19 +4,51 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class ContentView extends React.Component {
   render() {
     return (
-      <View>
-        <Text style={styles.mainText}>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone tasdfasdfo open the developer menu.</Text>
-      </View>
+       <View style={styles.mainx}>
+
+<View style={styles.mainx}>
+         <Text>asdf haalskdöfj aölsfdjk aöklsfdj aölksfj aöklsdfj aölskfdj asökldfj aölskfjsllo</Text>
+         <Text>asfasdf</Text>
+       </View>
+
+       <View style={styles.mainx}>
+         <Text>asdf hallo</Text>
+         <Text>asfasdf</Text>
+       </View>
+
+       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
 
-  mainText: {
+  mainx: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#ff0000',
+  },
+  
+  time: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      
+  },
+  
+  timeText: {
     color: '#77CC7B',
-  }
+    fontSize: 150,
+  },
+
+  blindDescriptionText: {
+    color: '#77CC7B',
+    fontSize: 50,
+  },
+
+  blindValueText: {
+    color: '#77CC7B',
+    fontSize: 15,
+  },
 
 });
