@@ -1,2 +1,0 @@
-# pokerTimer
-Poker Timer
