@@ -9,7 +9,7 @@ export default class MainView extends React.Component {
       <View style={styles.mainView}>
         <ButtonBar />
         <View style={styles.contentView}>
-        <View style={styles.box} />
+          <ContentView />
         </View>
       </View>
     );
@@ -29,16 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#ff0000',
-  },
-
-  box: {
-    width: 200,
-    height: 200,
-    backgroundColor: 'skyblue',
-    borderWidth: 2,
-    borderColor: 'steelblue',
-    borderRadius: 20,
   },
 
 });

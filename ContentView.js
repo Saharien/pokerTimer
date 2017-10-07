@@ -4,16 +4,21 @@ import { StyleSheet, Text, View } from 'react-native';
 export default class ContentView extends React.Component {
   render() {
     return (
-       <View style={styles.mainx}>
+       <View style={styles.innerContentView}>
 
-<View style={styles.mainx}>
-         <Text>asdf haalskdöfj aölsfdjk aöklsfdj aölksfj aöklsdfj aölskfdj asökldfj aölskfjsllo</Text>
-         <Text>asfasdf</Text>
-       </View>
+      <View>
+         <Text style={styles.timeText}>10:15</Text>
+      </View>
 
-       <View style={styles.mainx}>
-         <Text>asdf hallo</Text>
-         <Text>asfasdf</Text>
+       <View style={styles.blindContainerView}>
+         <View style={styles.blindView}>
+           <Text style={styles.blindDescriptionText}>Small Blind</Text>
+           <Text style={styles.blindValueText}>10</Text>
+         </View>
+         <View style={styles.blindView}>
+           <Text style={styles.blindDescriptionText}>Big Blind</Text>
+           <Text style={styles.blindValueText}>20</Text>
+         </View>         
        </View>
 
        </View>
@@ -23,32 +28,36 @@ export default class ContentView extends React.Component {
 
 const styles = StyleSheet.create({
 
-  mainx: {
+  innerContentView: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#ff0000',
   },
-  
-  time: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      
-  },
-  
+ 
   timeText: {
     color: '#77CC7B',
-    fontSize: 150,
+    fontSize: 180,
+  },
+
+  blindContainerView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+
+  blindView: {
+    alignItems: 'center',
+    padding: 30,
   },
 
   blindDescriptionText: {
     color: '#77CC7B',
-    fontSize: 50,
+    fontSize: 15,
   },
 
   blindValueText: {
     color: '#77CC7B',
-    fontSize: 15,
+    fontSize: 70,
   },
 
 });
