@@ -7,17 +7,17 @@ export default class ContentView extends React.Component {
        <View style={styles.innerContentView}>
 
       <View>
-         <Text style={styles.timeText}>10:15</Text>
+         <Text style={styles.timeText}>{this.props.remainingTime}</Text>
       </View>
 
        <View style={styles.blindContainerView}>
          <View style={styles.blindView}>
            <Text style={styles.blindDescriptionText}>Small Blind</Text>
-           <Text style={styles.blindValueText}>10</Text>
+           <Text style={styles.blindValueText}>{this.props.smallBlind}</Text>
          </View>
          <View style={styles.blindView}>
            <Text style={styles.blindDescriptionText}>Big Blind</Text>
-           <Text style={styles.blindValueText}>20</Text>
+           <Text style={styles.blindValueText}>{this.props.bigBlind}</Text>
          </View>         
        </View>
 
