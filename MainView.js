@@ -7,9 +7,17 @@ export default class MainView extends React.Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <ButtonBar />
+        <ButtonBar 
+          appState={this.props.appState}
+          onPressStart={this.props.onPressStart}
+          onPressPause={this.props.onPressPause}
+        />
         <View style={styles.contentView}>
-          <ContentView />
+          <ContentView
+            remainingTime={this.props.remainingTime}
+            smallBlind={this.props.smallBlind}
+            bigBlind={this.props.bigBlind}
+          />
         </View>
       </View>
     );
