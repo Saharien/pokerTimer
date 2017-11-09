@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
   },
  
   timeText: {
+    fontFamily: 'Menlo',
     color: '#77CC7B',
-    fontSize: 180,
+    fontSize: 170,
   },
 
   blindContainerView: {
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
   blindValueText: {
     color: '#77CC7B',
     fontSize: 70,
+    fontFamily: 'Menlo',    
   },
 
 });

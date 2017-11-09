@@ -4,37 +4,60 @@ import MainView from './MainView';
 export default class App extends React.Component {
 
   state = {
-    appState: 'stopped',
-    remainingTime: '10:10',
+    // Display in App
+    remainingTime: null,
     smallBlind: '10',
     bigBlind: '25',
-    blindLevel: 0,
-    levelTime: 10 * 60 * 1000,
-    timeAbs: null,
-    timeRel: 0,
-    intervalID: null
+    // Internal State
+    appState: 'stopped',
+    intervalID: null,
+    startTime: null,                      // when did we press start the first time
+    pause: 0,                             // how long was the clock paused at all
+    // Configuration
+    levelTime: 0.25 * 60 * 1000 + 1000,   // in ms
+    rounds: [
+      {smallBlind: 5, bigBlind: 10},
+      {smallBlind: 10, bigBlind: 25},
+      {smallBlind: 25, bigBlind: 50},
+      {smallBlind: 50, bigBlind: 100},
+      {smallBlind: 100, bigBlind: 200},
+      {smallBlind: 200, bigBlind: 400}]
+  }
+
+  updateTimer() {
+    let timePassed = new Date() - this.state.startTime - this.state.pause;
+    let passedRounds = Math.floor(timePassed/(this.state.levelTime));
+    let timeLeft = new Date(this.state.levelTime - (timePassed-passedRounds*this.state.levelTime));
+    let seconds = timeLeft.getSeconds().toString();
+    let minutes = timeLeft.getMinutes().toString();
+    this.setState({ remainingTime: minutes.padStart(2, '0') + ' ' + seconds.padStart(2, '0'),
+                    smallBlind: this.state.rounds[passedRounds].smallBlind,
+                    bigBlind: this.state.rounds[passedRounds].bigBlind, })
   }
 
   onPressStart = () => {
-    this.setState({ appState: 'started' })
-    this.setState({ timeAbs: new Date() })
-
+    this.setState({
+      appState: 'started',
+      startTime: new Date()
+    },
+      () => {
+        this.updateTimer()
+      })
 
     this.setState({
       intervalID:
       setInterval(() => {
-        let delta = new Date (this.state.levelTime - (this.state.timeRel + (new Date() - this.state.timeAbs)));
-        this.setState({ remainingTime: delta.getMinutes() + ':' + delta.getSeconds() })
-      }, 1000)
+        this.updateTimer()
+      }, 100)
     })
   }
 
   onPressPause = () => {
     this.setState({ appState: 'stopped' })
-    
+
     clearInterval(this.state.intervalID);
-    
-    this.setState({ remainingTime: '10:01' })
+
+    this.setState({ remainingTime: '10:00' })
   }
 
   render() {
