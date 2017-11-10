@@ -4,7 +4,7 @@ import ButtonBar from './ButtonBarView';
 import ContentView from './ContentView';
 
 export default class MainView extends React.Component {
-  render() {
+  render() {  
     return (
       <View style={styles.mainView}>
         <ButtonBar 
@@ -14,7 +14,8 @@ export default class MainView extends React.Component {
         />
         <View style={styles.contentView}>
           <ContentView
-            remainingTime={this.props.remainingTime}
+            remainingMinutes={this.props.remainingMinutes}
+            remainingSeconds={this.props.remainingSeconds}
             smallBlind={this.props.smallBlind}
             bigBlind={this.props.bigBlind}
           />

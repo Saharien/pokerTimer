@@ -3,11 +3,28 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default class ContentView extends React.Component {
   render() {
+
+
+
     return (
        <View style={styles.innerContentView}>
 
-      <View>
-         <Text style={styles.timeText}>{this.props.remainingTime}</Text>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+         <View style={{width: 110, alignItems: 'center'}}>
+           <Text style={styles.timeText}>{String(this.props.remainingMinutes).charAt(0)}</Text>
+         </View>
+         <View style={{width: 110, alignItems: 'center'}}>
+           <Text style={styles.timeText}>{String(this.props.remainingMinutes).charAt(1)}</Text>
+         </View>
+         <View style={{width: 50, alignItems: 'center'}}>
+           <Text style={styles.timeText}>:</Text>
+         </View>         
+         <View style={{width: 110, alignItems: 'center'}}>
+           <Text style={styles.timeText}>{String(this.props.remainingSeconds).charAt(0)}</Text>
+         </View>
+         <View style={{width: 110, alignItems: 'center'}}>
+           <Text style={styles.timeText}>{String(this.props.remainingSeconds).charAt(1)}</Text>
+         </View>
       </View>
 
        <View style={styles.blindContainerView}>
@@ -35,7 +52,6 @@ const styles = StyleSheet.create({
   },
  
   timeText: {
-    fontFamily: 'Menlo',
     color: '#77CC7B',
     fontSize: 170,
   },
@@ -58,8 +74,7 @@ const styles = StyleSheet.create({
 
   blindValueText: {
     color: '#77CC7B',
-    fontSize: 70,
-    fontFamily: 'Menlo',    
+    fontSize: 70,  
   },
 
 });

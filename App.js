@@ -5,7 +5,8 @@ export default class App extends React.Component {
 
   state = {
     // Display in App
-    remainingTime: null,
+    remainingMinutes: null,
+    remainingSeconds: null,
     smallBlind: '10',
     bigBlind: '25',
     // Internal State
@@ -30,7 +31,8 @@ export default class App extends React.Component {
     let timeLeft = new Date(this.state.levelTime - (timePassed-passedRounds*this.state.levelTime));
     let seconds = timeLeft.getSeconds().toString();
     let minutes = timeLeft.getMinutes().toString();
-    this.setState({ remainingTime: minutes.padStart(2, '0') + ' ' + seconds.padStart(2, '0'),
+    this.setState({ remainingMinutes: minutes.padStart(2, '0'),
+                    remainingSeconds: seconds.padStart(2, '0'),
                     smallBlind: this.state.rounds[passedRounds].smallBlind,
                     bigBlind: this.state.rounds[passedRounds].bigBlind, })
   }
@@ -57,13 +59,13 @@ export default class App extends React.Component {
 
     clearInterval(this.state.intervalID);
 
-    this.setState({ remainingTime: '10:00' })
   }
 
   render() {
     return (
       <MainView
-        remainingTime={this.state.remainingTime}
+        remainingMinutes={this.state.remainingMinutes}
+        remainingSeconds={this.state.remainingSeconds}
         smallBlind={this.state.smallBlind}
         bigBlind={this.state.bigBlind}
         appState={this.state.appState}
