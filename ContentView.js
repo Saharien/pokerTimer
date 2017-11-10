@@ -10,19 +10,19 @@ export default class ContentView extends React.Component {
        <View style={styles.innerContentView}>
 
       <View style={{flex: 1, flexDirection: 'row'}}>
-         <View style={{width: 110, alignItems: 'center'}}>
+         <View style={styles.digitContainer}>
            <Text style={styles.timeText}>{String(this.props.remainingMinutes).charAt(0)}</Text>
          </View>
-         <View style={{width: 110, alignItems: 'center'}}>
+         <View style={styles.digitContainer}>
            <Text style={styles.timeText}>{String(this.props.remainingMinutes).charAt(1)}</Text>
          </View>
          <View style={{width: 50, alignItems: 'center'}}>
            <Text style={styles.timeText}>:</Text>
          </View>         
-         <View style={{width: 110, alignItems: 'center'}}>
+         <View style={styles.digitContainer}>
            <Text style={styles.timeText}>{String(this.props.remainingSeconds).charAt(0)}</Text>
          </View>
-         <View style={{width: 110, alignItems: 'center'}}>
+         <View style={styles.digitContainer}>
            <Text style={styles.timeText}>{String(this.props.remainingSeconds).charAt(1)}</Text>
          </View>
       </View>
@@ -54,6 +54,11 @@ const styles = StyleSheet.create({
   timeText: {
     color: '#77CC7B',
     fontSize: 170,
+  },
+
+  digitContainer: {
+    width: 110,
+    alignItems: 'center',
   },
 
   blindContainerView: {
