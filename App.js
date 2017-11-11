@@ -1,12 +1,11 @@
 import React from 'react';
 import MainView from './MainView';
+import Util from './Util';
 
 export default class App extends React.Component {
 
   state = {
     // Display in App
-    remainingMinutes: null,
-    remainingSeconds: null,
     smallBlind: '10',
     bigBlind: '25',
     // Internal State
@@ -16,6 +15,8 @@ export default class App extends React.Component {
     pause: 0,                             // how long was the clock paused at all
     // Configuration
     levelTime: 0.25 * 60 * 1000 + 1000,   // in ms
+    remainingMinutes: Util.getMinutes(new Date(0.25 * 60 * 1000)),
+    remainingSeconds: Util.getSeconds(new Date(0.25 * 60 * 1000)),
     rounds: [
       {smallBlind: 5, bigBlind: 10},
       {smallBlind: 10, bigBlind: 25},
@@ -29,10 +30,8 @@ export default class App extends React.Component {
     let timePassed = new Date() - this.state.startTime - this.state.pause;
     let passedRounds = Math.floor(timePassed/(this.state.levelTime));
     let timeLeft = new Date(this.state.levelTime - (timePassed-passedRounds*this.state.levelTime));
-    let seconds = timeLeft.getSeconds().toString();
-    let minutes = timeLeft.getMinutes().toString();
-    this.setState({ remainingMinutes: minutes.padStart(2, '0'),
-                    remainingSeconds: seconds.padStart(2, '0'),
+    this.setState({ remainingMinutes: Util.getMinutes(timeLeft),
+                    remainingSeconds: Util.getSeconds(timeLeft),
                     smallBlind: this.state.rounds[passedRounds].smallBlind,
                     bigBlind: this.state.rounds[passedRounds].bigBlind, })
   }
