@@ -10,7 +10,7 @@ export default class ButtonBarView extends React.Component {
   render() {
     return (
       <View style={styles.buttonBar}>
-        {this.props.appState == 'stopped' ? (
+        { (this.props.appState == 'paused' || this.props.appState == 'stopped' ) ? (
           <EvilIcon name='play' size={85} style={styles.button} onPress={this.props.onPressStart} />
         ) : (
             <MiKaIcon name='pause' size={85} style={styles.button} color="#77CC7B" onPress={this.props.onPressPause} />
