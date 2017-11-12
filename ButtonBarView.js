@@ -15,7 +15,7 @@ export default class ButtonBarView extends React.Component {
         ) : (
             <MiKaIcon name='pause' size={85} style={styles.button} color="#77CC7B" onPress={this.props.onPressPause} />
           )}
-        <EvilIcon name='gear' size={83} style={styles.button} />
+        <EvilIcon name='gear' size={83} style={styles.button} onPress={this.props.onPressConfig}/>
       </View>
     );
   }

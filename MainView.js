@@ -11,6 +11,7 @@ export default class MainView extends React.Component {
           appState={this.props.appState}
           onPressStart={this.props.onPressStart}
           onPressPause={this.props.onPressPause}
+          onPressConfig={this.props.onPressConfig}
         />
         <View style={styles.contentView}>
           <ContentView

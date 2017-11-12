@@ -1,11 +1,12 @@
 import React from 'react';
 import MainView from './MainView';
+import ConfigView from './ConfigView';
 import Util from './Util';
 
 export default class App extends React.Component {
 
   state = {
-    // Display in App
+    // Display in App 
     smallBlind: '10',
     bigBlind: '25',
     // Internal State
@@ -24,7 +25,8 @@ export default class App extends React.Component {
       { smallBlind: 25, bigBlind: 50 },
       { smallBlind: 50, bigBlind: 100 },
       { smallBlind: 100, bigBlind: 200 },
-      { smallBlind: 200, bigBlind: 400 }]
+      { smallBlind: 200, bigBlind: 400 }],
+    currentView: 'main'
   }
 
   updateTimer() {
@@ -53,14 +55,13 @@ export default class App extends React.Component {
       console.log('hui');
       this.setState({
         appState: 'started',
-        pause: this.state.pause + ( new Date() - this.state.pauseStart ),
+        pause: this.state.pause + (new Date() - this.state.pauseStart),
         pauseStart: null
       },
         () => {
           this.updateTimer()
         })
     }
-
 
     this.setState({
       intervalID:
@@ -78,17 +79,33 @@ export default class App extends React.Component {
     })
   }
 
+  onPressConfig = () => {
+    this.setState({
+      currentView: 'config'
+    })
+  }
+
   render() {
-    return (
-      <MainView
-        remainingMinutes={this.state.remainingMinutes}
-        remainingSeconds={this.state.remainingSeconds}
-        smallBlind={this.state.smallBlind}
-        bigBlind={this.state.bigBlind}
-        appState={this.state.appState}
-        onPressStart={this.onPressStart}
-        onPressPause={this.onPressPause}
-      />
-    );
+    switch (this.state.currentView) {
+      case 'main':
+        return (
+          <MainView
+            remainingMinutes={this.state.remainingMinutes}
+            remainingSeconds={this.state.remainingSeconds}
+            smallBlind={this.state.smallBlind}
+            bigBlind={this.state.bigBlind}
+            appState={this.state.appState}
+            onPressStart={this.onPressStart}
+            onPressPause={this.onPressPause}
+            onPressConfig={this.onPressConfig}
+          />
+        );
+      case 'config':
+        return (
+          <ConfigView
+          />
+        );
+
+    }
   }
 }
