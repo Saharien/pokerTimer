@@ -1,28 +1,47 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TextInput } from 'react-native';
 import ButtonBar from './ButtonBarView';
 import ContentView from './ContentView';
 
 const rows = [
-  { id: 0, text: 'View' },
-  { id: 1, text: 'Text' },
-  { id: 2, text: 'Image' },
-  { id: 3, text: 'ScrollView' },
-  { id: 4, text: 'ListView' },
+
+  { id: 0, smallBlind: 5, bigBlind: 10 },
+  { id: 1, smallBlind: 10, bigBlind: 25 },
+  { id: 2, smallBlind: 25, bigBlind: 50 },
+  { id: 3, smallBlind: 50, bigBlind: 100 },
 ]
 
 const extractKey = ({ id }) => id
 
 export default class ConfigView extends React.Component {
 
+  state = {
+    levelTime: '0',
+  }
+
   renderItem = ({ item }) => {
     return (
       <Text style={styles.row}>
-        <View style={{width: 30, height: 15}}><Text>{item.id}</Text></View>
-        <View style={{width: 200, height: 15}}><Text>{item.text}</Text></View>
+        <View style={{ width: 30, height: 15 }}><Text>{item.id}</Text></View>
+        <View style={{ width: 200, height: 15 }}>
+
+          <TextInput
+            style={{ width: 80, height: 40, borderColor: '#77CC7B', borderWidth: 1 }}
+            onChangeText={(text) => this.setState({ text })}
+            value={this.state.text}
+          />
+
+        </View>
+        <View style={{ width: 200, height: 15 }}><Text>{item.bigBlind}</Text></View>
       </Text>
     )
   }
+
+  onSubmitEditing = () => {
+    console.log('submiteditting');
+  }
+
+  
 
   render() {
     return (
@@ -34,13 +53,23 @@ export default class ConfigView extends React.Component {
         />
         <View style={styles.contentView}>
 
-          <FlatList
-            style={styles.container}
-            data={rows}
-            renderItem={this.renderItem}
-            keyExtractor={extractKey}
-          />
+          <View>
+            <FlatList
+              style={styles.container}
+              data={rows}
+              renderItem={this.renderItem}
+              keyExtractor={extractKey}
+            />
+          </View>
 
+          <View style={{justifyContent: 'flex-start'}}>
+            <TextInput
+              style={{ width: 80, height: 40, color: '#77CC7B', borderColor: '#77CC7B', borderWidth: 1 }}
+              value={this.state.levelTime}
+              onChangeText={(text) => this.setState({ levelTime: text })}
+              onSubmitEditing={this.onSubmitEditing}
+            />
+          </View>
 
         </View>
       </View>
@@ -59,7 +88,7 @@ const styles = StyleSheet.create({
 
   contentView: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
   },
 
@@ -71,7 +100,6 @@ const styles = StyleSheet.create({
   row: {
     padding: 15,
     marginBottom: 5,
-    backgroundColor: 'skyblue',
   },
 
 });
